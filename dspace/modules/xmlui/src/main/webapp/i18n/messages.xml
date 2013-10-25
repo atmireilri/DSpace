@@ -138,6 +138,7 @@
     <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_output">Output Type</message>
     <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_anancy">Anancy Subject</message>
     <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_wle">WLE Subject</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_bioversity">Bioversity Subject</message>
 
    <!--  some common other possibilities for Advanced Search Fields -->
    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_contributor">Contributor</message>
@@ -189,6 +190,7 @@
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.iwmisubject.column_heading">IWMI Subject Name</message>
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.anancy.column_heading">Anancy Subject Name</message>
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.wle.column_heading">WLE Subject Name</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.bioversity.column_heading">Bioversity Subject Name</message>
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.crpsubject.column_heading">CGIAR research program</message>
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.basin.column_heading">River Basin</message>
 
@@ -253,6 +255,9 @@
 
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.metadata.wle">Browsing {0} WLE Subject {1}</message>
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.metadata.wle">Browsing {0} by WLE Subject</message>
+
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.metadata.bioversity">Browsing {0} by Bioversity Subject {1}</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.metadata.bioversity">Browsing {0} by Bioversity Subject</message>
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.CollectionViewer.java -->
 	<message key="xmlui.ArtifactBrowser.CollectionViewer.search_scope">Search Scope</message>
@@ -344,11 +349,11 @@
 	<message key="xmlui.ArtifactBrowser.Navigation.browse_iwmisubject">By IWMI Subject</message>
 	<message key="xmlui.ArtifactBrowser.Navigation.browse_anancy">By Anancy Subject</message>
 	<message key="xmlui.ArtifactBrowser.Navigation.browse_wle">By WLE Subject</message>
+	<message key="xmlui.ArtifactBrowser.Navigation.browse_bioversity">By Bioversity Subject</message>
 	<message key="xmlui.ArtifactBrowser.Navigation.browse_subregion">By Sub Region</message>
 	<message key="xmlui.ArtifactBrowser.Navigation.browse_crpsubject">By CRP Subject</message>
 	<message key="xmlui.ArtifactBrowser.Navigation.browse_basin">By River Basin</message>
 	<message key="xmlui.ArtifactBrowser.Navigation.browse_output">By Output Type</message>
-
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.SimpleSearch.java -->
 	<message key="xmlui.ArtifactBrowser.SimpleSearch.title">Search</message>
