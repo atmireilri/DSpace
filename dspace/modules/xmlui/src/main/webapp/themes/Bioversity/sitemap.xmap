@@ -28,8 +28,8 @@
 		-->
 		<map:component-configurations>
 			<global-variables>
-				<theme-path>BIODIVERSITY</theme-path>
-				<theme-name>BIODIVERSITY</theme-name>
+				<theme-path>Bioversity</theme-path>
+				<theme-name>Bioversity</theme-name>
 			</global-variables>
         </map:component-configurations>
 
