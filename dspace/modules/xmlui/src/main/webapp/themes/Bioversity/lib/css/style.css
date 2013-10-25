@@ -77,9 +77,9 @@ select.multiple {
 #ds-header-logo {
     float:left;
     width: 980px;
-    height: 97px;
+    height: 96px;
     margin-top: 10px;
-    background: url("../../images/bioversity.jpg");
+    background: url("../../images/banner.jpg");
     background-repeat: no-repeat;
     background-color: transparent;
     margin-right: 15px;
