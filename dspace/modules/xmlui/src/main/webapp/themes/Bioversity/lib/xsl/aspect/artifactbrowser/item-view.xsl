@@ -31,11 +31,12 @@
     xmlns:xalan="http://xml.apache.org/xalan"
     xmlns:encoder="xalan://java.net.URLEncoder"
     xmlns:util="org.dspace.app.xmlui.utils.XSLUtils"
-    exclude-result-prefixes="xalan encoder i18n dri mets dim xlink xsl util">
+    xmlns:jstring="java.lang.String"
+    xmlns:rights="http://cosimo.stanford.edu/sdr/metsrights/"
+    exclude-result-prefixes="xalan encoder i18n dri mets dim xlink xsl util jstring rights">
 
     <xsl:output indent="yes"/>
 
-    <!-- An item rendered in the summaryView pattern. This is the default way to view a DSpace item in Manakin. -->
     <xsl:template name="itemSummaryView-DIM">
         <!-- Generate the info about the item from the metadata section -->
         <xsl:apply-templates select="./mets:dmdSec/mets:mdWrap[@OTHERMDTYPE='DIM']/mets:xmlData/dim:dim"
