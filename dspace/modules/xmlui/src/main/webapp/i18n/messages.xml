@@ -132,6 +132,10 @@
 	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_ciforsubject">CIFOR Subject</message>
 	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_iwmisubject">IWMI Subject</message>
 	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_subregion">Sub Region</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_common_status_identifier">Status</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_jtitle">Journal Title</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_ISI_Journal">ISI Journal status</message>
+	
 
     <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_crpsubject">CGIAR research program</message>
     <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_basin">River Basin</message>
