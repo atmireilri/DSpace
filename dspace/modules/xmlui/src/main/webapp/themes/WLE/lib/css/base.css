@@ -30,7 +30,7 @@ color:#374da2;
 text-decoration: none;
 font-weight: normal;
  }
-a:hover { color:#15c93b; }
+a:hover { text-decoration: underline; }
 
 
 ul { margin-left:30px; }

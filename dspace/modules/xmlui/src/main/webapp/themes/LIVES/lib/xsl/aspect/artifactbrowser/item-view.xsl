@@ -1,4 +1,4 @@
-<!---CIFOR
+<!--
 
     The contents of this file are subject to the license and copyright
     detailed in the LICENSE and NOTICE files at the root of the source
@@ -594,14 +594,20 @@
 		<!-- River Basin row -->
             <xsl:when test="$clause = 18 and (dim:field[@element='river' and @qualifier='basin'])">
                     <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>River Basin</i18n:text>:</span></td>
+	                <td><span class="bold"><i18n:text>River Basin Focus</i18n:text>:</span></td>
 	                <td>
-	                <xsl:for-each select="//dim:field[@element='river'and @qualifier='basin']">
-                      <xsl:variable name="lnk"><xsl:value-of select="."/></xsl:variable>
-
-                            <a href="/browse?value={.}&amp;type=basin"><xsl:value-of select="."/></a><xsl:if test="position()!=last()"><xsl:text>, </xsl:text></xsl:if>
-
-                    </xsl:for-each>
+	                <xsl:if test="count(dim:field[@element='river' and @qualifier='basin']) &gt; 1">
+	                	<hr class="metadata-seperator"/>
+	                </xsl:if>
+	                <xsl:for-each select="dim:field[@element='river' and @qualifier='basin']">
+		                <xsl:copy-of select="./node()"/>
+		                <xsl:if test="count(following-sibling::dim:field[@element='river' and @qualifier='basin']) != 0">
+	                    	<hr class="metadata-seperator"/>
+	                    </xsl:if>
+	              	</xsl:for-each>
+	              	<xsl:if test="count(dim:field[@element='river' and @qualifier='basin']) &gt; 1">
+	                	<hr class="metadata-seperator"/>
+	                </xsl:if>
 	                </td>
 	            </tr>
               <xsl:call-template name="itemSummaryView-DIM-fields">
@@ -618,7 +624,7 @@
 
 		<xsl:when test="$clause = 19 and (dim:field[@element='cplace' and @qualifier='country'])">
                     <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>Country</i18n:text>:</span></td>
+	                <td><span class="bold"><i18n:text>Country Focus</i18n:text>:</span></td>
 	                <td>
 	                <xsl:for-each select="//dim:field[@element='cplace'and @qualifier='country']">
                       <xsl:variable name="lnk"><xsl:value-of select="."/></xsl:variable>
@@ -638,7 +644,7 @@
          <!-- Region Focus row -->
 		<xsl:when test="$clause = 20 and (dim:field[@element='rplace' and @qualifier='region'])">
                     <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>Region</i18n:text>:</span></td>
+	                <td><span class="bold"><i18n:text>Region Focus</i18n:text>:</span></td>
 	                <td>
 	                <xsl:for-each select="//dim:field[@element='rplace'and @qualifier='region']">
                       <xsl:variable name="lnk"><xsl:value-of select="."/></xsl:variable>
@@ -655,16 +661,15 @@
           </xsl:when>
 
 
-
-        <!-- CIFOR Subject row -->
-		<xsl:when test="$clause = 21 and (dim:field[@element='cisubject' and @qualifier='ciforsubject'])">
+	<!-- CRP Subject row -->
+		<xsl:when test="$clause = 21 and (dim:field[@element='crsubject' and @qualifier='crpsubject'])">
                     <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>Subject Focus</i18n:text>:</span></td>
+	                <td><span class="bold"><i18n:text>CGIAR research program</i18n:text>:</span></td>
 	                <td>
-	                <xsl:for-each select="//dim:field[@element='cisubject'and @qualifier='ciforsubject']">
+	                <xsl:for-each select="//dim:field[@element='crsubject'and @qualifier='crpsubject']">
                       <xsl:variable name="lnk"><xsl:value-of select="."/></xsl:variable>
 
-                            <a href="/browse?value={.}&amp;type=ciforsubject"><xsl:value-of select="."/></a><xsl:if test="position()!=last()"><xsl:text>, </xsl:text></xsl:if>
+                            <a href="/browse?value={.}&amp;type=crpsubject"><xsl:value-of select="."/></a><xsl:if test="position()!=last()"><xsl:text>, </xsl:text></xsl:if>
 
                     </xsl:for-each>
 	                </td>
@@ -676,8 +681,28 @@
           </xsl:when>
 
 
-			  <!--  PROJECT SPONSOR row -->
-		  <xsl:when test="$clause = 22 and (dim:field[@element='description' and @qualifier='sponsorship'])">
+  <!-- ILRI Subject row -->
+		<xsl:when test="$clause = 22 and (dim:field[@element='isubject' and @qualifier='ilrisubject'])">
+                    <tr class="ds-table-row {$phase}">
+	                <td><span class="bold"><i18n:text>Subject Focus</i18n:text>:</span></td>
+	                <td>
+	                <xsl:for-each select="//dim:field[@element='isubject'and @qualifier='ilrisubject']">
+                      <xsl:variable name="lnk"><xsl:value-of select="."/></xsl:variable>
+
+                            <a href="/browse?value={.}&amp;type=ilrisubject"><xsl:value-of select="."/></a><xsl:if test="position()!=last()"><xsl:text>, </xsl:text></xsl:if>
+
+                    </xsl:for-each>
+	                </td>
+	            </tr>
+              <xsl:call-template name="itemSummaryView-DIM-fields">
+                <xsl:with-param name="clause" select="($clause + 1)"/>
+                <xsl:with-param name="phase" select="$otherPhase"/>
+              </xsl:call-template>
+          </xsl:when>
+
+
+	  <!--  PROJECT SPONSOR row -->
+		  <xsl:when test="$clause = 23 and (dim:field[@element='description' and @qualifier='sponsorship'])">
                     <tr class="ds-table-row {$phase}">
 	                <td><span class="bold"><i18n:text>Project Sponsor</i18n:text>:</span></td>
 	                <td>
@@ -703,7 +728,7 @@
 
 
 		<!-- Fund row -->
-		<xsl:when test="$clause = 23 and (dim:field[@element='identifier' and @qualifier='fund'])">
+		<xsl:when test="$clause = 24 and (dim:field[@element='identifier' and @qualifier='fund'])">
                     <tr class="ds-table-row {$phase}">
 	                <td><span class="bold"><i18n:text>Sponsor Project Number</i18n:text>:</span></td>
 	                <td>
@@ -729,7 +754,7 @@
 
 
 	     <!-- ISI Journal -->
-		  <xsl:when test="$clause = 24 and (dim:field[@element='isijournal' and not(@qualifier)])">
+		  <xsl:when test="$clause = 25 and (dim:field[@element='isijournal' and not(@qualifier)])">
                     <tr class="ds-table-row {$phase}">
 	                <td><span class="bold"><i18n:text>ISI Journal</i18n:text>:</span></td>
 	                <td>
@@ -754,7 +779,7 @@
           </xsl:when>
 
 		 <!-- ANIMAL SPECIES -->
-		<xsl:when test="$clause =25 and (dim:field[@element='Species' and @qualifier='animal'])">
+		<xsl:when test="$clause = 26 and (dim:field[@element='Species' and @qualifier='animal'])">
                     <tr class="ds-table-row {$phase}">
 	                <td><span class="bold"><i18n:text>Animal species</i18n:text>:</span></td>
 	                <td>
@@ -787,7 +812,7 @@
           <!-- recurse without changing phase if we didn't output anything -->
           <xsl:otherwise>
             <!-- IMPORTANT: This test should be updated if clauses are added! -->
-            <xsl:if test="$clause &lt; 26">
+            <xsl:if test="$clause &lt; 27">
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$phase"/>
@@ -992,7 +1017,7 @@
                             <xsl:attribute name="href">
                                 <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
                             </xsl:attribute>
-                            <img alt="Thumbnail">
+                            <img alt="Thumbnail" style="max-width: 94px;">
                                 <xsl:attribute name="src">
                                     <xsl:value-of select="$context/mets:fileSec/mets:fileGrp[@USE='THUMBNAIL']/
                                         mets:file[@GROUPID=current()/@GROUPID]/mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>

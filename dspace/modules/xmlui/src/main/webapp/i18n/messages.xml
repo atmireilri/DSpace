@@ -98,6 +98,7 @@
    <message key="xmlui.ArtifactBrowser.AbstractSearch.sort_by.dateissued">issue date</message>
    <message key="xmlui.ArtifactBrowser.AbstractSearch.sort_by.dateaccessioned">submit date</message>
 	<message key="xmlui.ArtifactBrowser.AbstractSearch.sort_by.relevance">relevance</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.sort_by.output">output type</message>
 	<message key="xmlui.ArtifactBrowser.AbstractSearch.sort_by">Sort items by</message>
 	<message key="xmlui.ArtifactBrowser.AbstractSearch.order">in order</message>
 	<message key="xmlui.ArtifactBrowser.AbstractSearch.order.asc">ascending</message>
@@ -140,8 +141,11 @@
     <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_crpsubject">CGIAR research program</message>
     <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_basin">River Basin</message>
     <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_output">Output Type</message>
-    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_anancy">Anancy Subject</message>
-    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_wle">WLE Subject</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_cta">CTA Subject</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_wlesubject">WLE Subject</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_bioversity">Bioversity Subject</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_ciat">CIAT Subject</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_humidtropics">Humidtropics Subject</message>
 
    <!--  some common other possibilities for Advanced Search Fields -->
    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_contributor">Contributor</message>
@@ -153,6 +157,9 @@
    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_other">Other Contributor</message>
    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_advisor">Advisor</message>
    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_department">Department</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_common_status_identifier">Status</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_jtitle">Journal Title</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_ISI_Journal">ISI Journal status</message>
 
    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_ANY">Full Text</message>
    <message key="xmlui.ArtifactBrowser.AdvancedSearch.and">AND</message>
@@ -191,8 +198,11 @@
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.ccafsubject.column_heading">CCAFS Subject Name</message>
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.ciforsubject.column_heading">CIFOR Subject Name</message>
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.iwmisubject.column_heading">IWMI Subject Name</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.anancy.column_heading">Anancy Subject Name</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.wle.column_heading">WLE Subject Name</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.cta.column_heading">CTA Subject Name</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.wlesubject.column_heading">WLE Subject Name</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.bioversity.column_heading">Bioversity Subject Name</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.ciat.column_heading">CIAT Subject Name</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.humidtropics.column_heading">Humidtropics Subject Name</message>
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.crpsubject.column_heading">CGIAR research program</message>
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.basin.column_heading">River Basin</message>
 
@@ -252,11 +262,20 @@
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.metadata.output">Browsing {0} by Output Type {1}</message>
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.metadata.output">Browsing {0} by Output Type</message>
 
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.metadata.anancy">Browsing {0} by Anancy Subject {1}</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.metadata.anancy">Browsing {0} by Anancy Subject</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.metadata.cta">Browsing {0} by CTA Subject {1}</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.metadata.cta">Browsing {0} by CTA Subject</message>
 
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.metadata.wle">Browsing {0} WLE Subject {1}</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.metadata.wle">Browsing {0} by WLE Subject</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.metadata.wlesubject">Browsing {0} WLE Subject {1}</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.metadata.wlesubject">Browsing {0} by WLE Subject</message>
+
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.metadata.bioversity">Browsing {0} by Bioversity Subject {1}</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.metadata.bioversity">Browsing {0} by Bioversity Subject</message>
+
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.metadata.ciat">Browsing {0} by CIAT Subject {1}</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.metadata.ciat">Browsing {0} by CIAT Subject</message>
+
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.metadata.humidtropics">Browsing {0} by Humidtropics Subject {1}</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.metadata.humidtropics">Browsing {0} by Humidtropics Subject</message>
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.CollectionViewer.java -->
 	<message key="xmlui.ArtifactBrowser.CollectionViewer.search_scope">Search Scope</message>
@@ -346,13 +365,15 @@
 	<message key="xmlui.ArtifactBrowser.Navigation.browse_ccafsubject">By CCAFS Subject</message>
 	<message key="xmlui.ArtifactBrowser.Navigation.browse_ciforsubject">By CIFOR Subject</message>
 	<message key="xmlui.ArtifactBrowser.Navigation.browse_iwmisubject">By IWMI Subject</message>
-	<message key="xmlui.ArtifactBrowser.Navigation.browse_anancy">By Anancy Subject</message>
-	<message key="xmlui.ArtifactBrowser.Navigation.browse_wle">By WLE Subject</message>
+	<message key="xmlui.ArtifactBrowser.Navigation.browse_cta">By CTA Subject</message>
+	<message key="xmlui.ArtifactBrowser.Navigation.browse_wlesubject">By WLE Subject</message>
+	<message key="xmlui.ArtifactBrowser.Navigation.browse_bioversity">By Bioversity Subject</message>
+	<message key="xmlui.ArtifactBrowser.Navigation.browse_ciat">By CIAT Subject</message>
+	<message key="xmlui.ArtifactBrowser.Navigation.browse_humidtropics">By Humidtropics Subject</message>
 	<message key="xmlui.ArtifactBrowser.Navigation.browse_subregion">By Sub Region</message>
 	<message key="xmlui.ArtifactBrowser.Navigation.browse_crpsubject">By CRP Subject</message>
 	<message key="xmlui.ArtifactBrowser.Navigation.browse_basin">By River Basin</message>
 	<message key="xmlui.ArtifactBrowser.Navigation.browse_output">By Output Type</message>
-
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.SimpleSearch.java -->
 	<message key="xmlui.ArtifactBrowser.SimpleSearch.title">Search</message>
@@ -389,7 +410,7 @@
         
 	<!-- Authentication messages used at the top of the login page:  -->
 	<message key="xmlui.ArtifactBrowser.RestrictedItem.auth_header">The item is restricted</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.auth_message">The item you are attempting to access is a restricted item and requires credentials to view. Please login below to access the item.</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.auth_message">The item you are attempting to access is restricted. Please login below to access the item.</message>
 
     <message key="xmlui.ArtifactBrowser.StatisticsViewer.choose_month">Monthly Reports</message>
     <message key="xmlui.ArtifactBrowser.StatisticsViewer.report.title">Statistical Summary</message>
@@ -399,11 +420,11 @@
 
     <!-- Authentication messages used for bitstream authentication -->
 	<message key="xmlui.BitstreamReader.auth_header">The file is restricted</message>
-	<message key="xmlui.BitstreamReader.auth_message">The file you are attempting to access is a restricted file and requires credentials to view. Please login below to access the file.</message>
+	<message key="xmlui.BitstreamReader.auth_message">The file you are attempting to access is restricted. Please login below to access the file.</message>
 
 	<!-- Export Archive download messages -->
 	<message key="xmlui.ItemExportDownloadReader.auth_header">This export archive is restricted.</message>
-	<message key="xmlui.ItemExportDownloadReader.auth_message">The export archive you are attempting to access is a restricted resource and requires credentials to view. Please login below to access the export archive.</message>
+	<message key="xmlui.ItemExportDownloadReader.auth_message">The export archive you are attempting to access is restricted. Please login below to access the export archive.</message>
 
 	<!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -511,7 +532,7 @@
 	<message key="xmlui.EPerson.LoginChooser.head1">Choose a Login Method</message>
 	<message key="xmlui.EPerson.LoginChooser.para1">Log in via:</message>
 	<message key="org.dspace.authenticate.ShibAuthentication.title">Shibboleth Authentication</message>
-	<message key="org.dspace.eperson.LDAPAuthentication.title">LDAP Authentication (CGIAR users)</message>
+	<message key="org.dspace.eperson.LDAPAuthentication.title">LDAP Authentication (ILRI and CGIAR users this is your usual network login)</message>
 	<message key="org.dspace.eperson.PasswordAuthentication.title">Password Authentication</message>
 	<message key="org.dspace.eperson.X509Authentication.title">Web Certificate Authentication</message>
 
@@ -2370,6 +2391,7 @@
     <!--CUA-->
     <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_issuedate">Date Issued</message>
     <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_accessioneddate">Date Accesioned</message>
+    <message key="xmlui.ArtifactBrowser.ConfigurableBrowse.sort_by.type">Output type</message>
     <!--end CUA-->
 
 </catalogue>

@@ -139,10 +139,10 @@
                         <xsl:choose>
                             <xsl:when test="count(dim:field[@element='title'][not(@qualifier)]) &gt; 1">
                                 <xsl:for-each select="dim:field[@element='title'][not(@qualifier)]">
-                            	   <xsl:value-of select="./node()"/>
-                            	   <xsl:if test="count(following-sibling::dim:field[@element='title'][not(@qualifier)]) != 0">
-	                                    <xsl:text>; </xsl:text><br/>
-	                                </xsl:if>
+                                   <xsl:value-of select="./node()"/>
+                                   <xsl:if test="count(following-sibling::dim:field[@element='title'][not(@qualifier)]) != 0">
+                                        <xsl:text>; </xsl:text><br/>
+                                    </xsl:if>
                                 </xsl:for-each>
                             </xsl:when>
                             <xsl:when test="count(dim:field[@element='title'][not(@qualifier)]) = 1">
@@ -162,34 +162,34 @@
           </xsl:when>
 
 
-		      <!-- Author(s) row -->
+              <!-- Author(s) row -->
           <xsl:when test="$clause =2 and (dim:field[@element='contributor'][@qualifier='author'] or dim:field[@element='creator'] or dim:field[@element='contributor'])">
                     <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.item-author</i18n:text>:</span></td>
-	                <td>
+                    <td><span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.item-author</i18n:text>:</span></td>
+                    <td>
 
-					<xsl:for-each select="//dim:field[@element='contributor'and @qualifier='author']">
+                    <xsl:for-each select="//dim:field[@element='contributor'and @qualifier='author']">
                       <xsl:variable name="lnk"><xsl:value-of select="."/></xsl:variable>
 
                             <a href="/browse?value={.}&amp;type=author"><xsl:value-of select="."/></a><xsl:if test="position()!=last()"><xsl:text>, </xsl:text></xsl:if>
 
                     </xsl:for-each>
 
-	                </td>
-	            </tr>
+                    </td>
+                </tr>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$otherPhase"/>
               </xsl:call-template>
           </xsl:when>
 
-		 <!-- subject( AGROVOC Keywords )row -->
+         <!-- subject( AGROVOC Keywords )row -->
 
-		<xsl:when test="$clause = 3 and (dim:field[@element='subject' and not(@qualifier)])">
+        <xsl:when test="$clause = 3 and (dim:field[@element='subject' and not(@qualifier)])">
                     <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>AGROVOC Keywords</i18n:text>:</span></td>
-	               <td>
-	                	<xsl:for-each select="dim:field[@element='subject' and not(@qualifier)]">
+                    <td><span class="bold"><i18n:text>AGROVOC Keywords</i18n:text>:</span></td>
+                   <td>
+                        <xsl:for-each select="dim:field[@element='subject' and not(@qualifier)]">
                                 <span>
                                   <xsl:if test="@authority">
                                     <xsl:attribute name="class"><xsl:text>ds-dc_contributor_author-authority</xsl:text></xsl:attribute>
@@ -200,9 +200,9 @@
                                 <xsl:text>; </xsl:text>
                                 </xsl:if>
                         </xsl:for-each>
-	                </td>
+                    </td>
 
-	            </tr>
+                </tr>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$otherPhase"/>
@@ -213,44 +213,44 @@
 
 
 
-		   <!-- date.issued row -->
+           <!-- date.issued row -->
           <xsl:when test="$clause = 4 and (dim:field[@element='date' and @qualifier='issued'])">
                     <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.item-date</i18n:text>:</span></td>
-	                <td>
-		                <xsl:for-each select="dim:field[@element='date' and @qualifier='issued']">
-		                	<xsl:copy-of select="substring(./node(),1,10)"/>
-		                	 <xsl:if test="count(following-sibling::dim:field[@element='date' and @qualifier='issued']) != 0">
-	                    	<br/>
-	                    </xsl:if>
-		                </xsl:for-each>
-	                </td>
-	            </tr>
+                    <td><span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.item-date</i18n:text>:</span></td>
+                    <td>
+                        <xsl:for-each select="dim:field[@element='date' and @qualifier='issued']">
+                            <xsl:copy-of select="substring(./node(),1,10)"/>
+                             <xsl:if test="count(following-sibling::dim:field[@element='date' and @qualifier='issued']) != 0">
+                            <br/>
+                        </xsl:if>
+                        </xsl:for-each>
+                    </td>
+                </tr>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$otherPhase"/>
               </xsl:call-template>
           </xsl:when>
 
-		  <!-- Publisher row -->
-		  <xsl:when test="$clause = 5 and (dim:field[@element='publisher' and not(@qualifier)])">
+          <!-- Publisher row -->
+          <xsl:when test="$clause = 5 and (dim:field[@element='publisher' and not(@qualifier)])">
                     <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>Publisher</i18n:text>:</span></td>
-	                <td>
-	                <xsl:if test="count(dim:field[@element='publisher' and not(@qualifier)]) &gt; 1 and not(count(dim:field[@element='publisher' and @qualifier='publisher']) &gt; 1)">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                <xsl:for-each select="dim:field[@element='publisher' and not(@qualifier)]">
-		                <xsl:copy-of select="./node()"/>
-		                <xsl:if test="count(following-sibling::dim:field[@element='publisher' and not(@qualifier)]) != 0">
-	                    	<hr class="metadata-seperator"/>
-	                    </xsl:if>
-	               	</xsl:for-each>
-	               	<xsl:if test="count(dim:field[@element='publisher' and not(@qualifier)]) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                </td>
-	            </tr>
+                    <td><span class="bold"><i18n:text>Publisher</i18n:text>:</span></td>
+                    <td>
+                    <xsl:if test="count(dim:field[@element='publisher' and not(@qualifier)]) &gt; 1 and not(count(dim:field[@element='publisher' and @qualifier='publisher']) &gt; 1)">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    <xsl:for-each select="dim:field[@element='publisher' and not(@qualifier)]">
+                        <xsl:copy-of select="./node()"/>
+                        <xsl:if test="count(following-sibling::dim:field[@element='publisher' and not(@qualifier)]) != 0">
+                            <hr class="metadata-seperator"/>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='publisher' and not(@qualifier)]) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    </td>
+                </tr>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$otherPhase"/>
@@ -258,51 +258,51 @@
           </xsl:when>
 
 
-		    <!-- Citation row -->
+            <!-- Citation row -->
 
-		<xsl:when test="$clause = 6 and (dim:field[@element='identifier' and @qualifier='citation'])">
+        <xsl:when test="$clause = 6 and (dim:field[@element='identifier' and @qualifier='citation'])">
                     <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>Citation</i18n:text>:</span></td>
-	                <td>
-	                <xsl:if test="count(dim:field[@element='identifier' and @qualifier='citation']) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                <xsl:for-each select="dim:field[@element='identifier' and @qualifier='citation']">
-		                <xsl:copy-of select="./node()"/>
-		                <xsl:if test="count(following-sibling::dim:field[@element='identifier' and @qualifier='citation']) != 0">
-	                    	<hr class="metadata-seperator"/>
-	                    </xsl:if>
-	              	</xsl:for-each>
-	              	<xsl:if test="count(dim:field[@element='identifier' and @qualifier='citation']) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                </td>
-	            </tr>
+                    <td><span class="bold"><i18n:text>Citation</i18n:text>:</span></td>
+                    <td>
+                    <xsl:if test="count(dim:field[@element='identifier' and @qualifier='citation']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    <xsl:for-each select="dim:field[@element='identifier' and @qualifier='citation']">
+                        <xsl:copy-of select="./node()"/>
+                        <xsl:if test="count(following-sibling::dim:field[@element='identifier' and @qualifier='citation']) != 0">
+                            <hr class="metadata-seperator"/>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='identifier' and @qualifier='citation']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    </td>
+                </tr>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$otherPhase"/>
               </xsl:call-template>
           </xsl:when>
 
-		  <!-- Series Report NO row -->
-		<xsl:when test="$clause = 7 and (dim:field[@element='relation' and @qualifier='ispartofseries'])">
+          <!-- Series Report NO row -->
+        <xsl:when test="$clause = 7 and (dim:field[@element='relation' and @qualifier='ispartofseries'])">
                     <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>Series/Report No.</i18n:text>:</span></td>
-	                <td>
-	                <xsl:if test="count(dim:field[@element='relation' and @qualifier='ispartofseries']) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                <xsl:for-each select="dim:field[@element='relation' and @qualifier='ispartofseries']">
-		                <xsl:copy-of select="./node()"/>
-		                <xsl:if test="count(following-sibling::dim:field[@element='relation' and @qualifier='ispartofseries']) != 0">
-	                    	<hr class="metadata-seperator"/>
-	                    </xsl:if>
-	              	</xsl:for-each>
-	              	<xsl:if test="count(dim:field[@element='relation' and @qualifier='ispartofseries']) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                </td>
-	            </tr>
+                    <td><span class="bold"><i18n:text>Series/Report No.</i18n:text>:</span></td>
+                    <td>
+                    <xsl:if test="count(dim:field[@element='relation' and @qualifier='ispartofseries']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    <xsl:for-each select="dim:field[@element='relation' and @qualifier='ispartofseries']">
+                        <xsl:copy-of select="./node()"/>
+                        <xsl:if test="count(following-sibling::dim:field[@element='relation' and @qualifier='ispartofseries']) != 0">
+                            <hr class="metadata-seperator"/>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='relation' and @qualifier='ispartofseries']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    </td>
+                </tr>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$otherPhase"/>
@@ -314,22 +314,22 @@
           <!-- Abstract row -->
           <xsl:when test="$clause = 8 and (dim:field[@element='description' and @qualifier='abstract'])">
                     <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.item-abstract</i18n:text>:</span></td>
-	                <td>
-	                <xsl:if test="count(dim:field[@element='description' and @qualifier='abstract']) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                <xsl:for-each select="dim:field[@element='description' and @qualifier='abstract']">
-		                <xsl:copy-of select="./node()"/>
-		                <xsl:if test="count(following-sibling::dim:field[@element='description' and @qualifier='abstract']) != 0">
-	                    	<hr class="metadata-seperator"/>
-	                    </xsl:if>
-	              	</xsl:for-each>
-	              	<xsl:if test="count(dim:field[@element='description' and @qualifier='abstract']) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                </td>
-	            </tr>
+                    <td><span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.item-abstract</i18n:text>:</span></td>
+                    <td>
+                    <xsl:if test="count(dim:field[@element='description' and @qualifier='abstract']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    <xsl:for-each select="dim:field[@element='description' and @qualifier='abstract']">
+                        <xsl:copy-of select="./node()"/>
+                        <xsl:if test="count(following-sibling::dim:field[@element='description' and @qualifier='abstract']) != 0">
+                            <hr class="metadata-seperator"/>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='description' and @qualifier='abstract']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    </td>
+                </tr>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$otherPhase"/>
@@ -339,22 +339,22 @@
           <!-- Description row -->
           <xsl:when test="$clause = 9 and (dim:field[@element='description' and not(@qualifier)])">
                     <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.item-description</i18n:text>:</span></td>
-	                <td>
-	                <xsl:if test="count(dim:field[@element='description' and not(@qualifier)]) &gt; 1 and not(count(dim:field[@element='description' and @qualifier='abstract']) &gt; 1)">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                <xsl:for-each select="dim:field[@element='description' and not(@qualifier)]">
-		                <xsl:copy-of select="./node()"/>
-		                <xsl:if test="count(following-sibling::dim:field[@element='description' and not(@qualifier)]) != 0">
-	                    	<hr class="metadata-seperator"/>
-	                    </xsl:if>
-	               	</xsl:for-each>
-	               	<xsl:if test="count(dim:field[@element='description' and not(@qualifier)]) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                </td>
-	            </tr>
+                    <td><span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.item-description</i18n:text>:</span></td>
+                    <td>
+                    <xsl:if test="count(dim:field[@element='description' and not(@qualifier)]) &gt; 1 and not(count(dim:field[@element='description' and @qualifier='abstract']) &gt; 1)">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    <xsl:for-each select="dim:field[@element='description' and not(@qualifier)]">
+                        <xsl:copy-of select="./node()"/>
+                        <xsl:if test="count(following-sibling::dim:field[@element='description' and not(@qualifier)]) != 0">
+                            <hr class="metadata-seperator"/>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='description' and not(@qualifier)]) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    </td>
+                </tr>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$otherPhase"/>
@@ -364,21 +364,21 @@
           <!-- identifier.uri row -->
           <xsl:when test="$clause = 10 and (dim:field[@element='identifier' and @qualifier='uri'])">
                     <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.item-uri</i18n:text>:</span></td>
-	                <td>
-	                	<xsl:for-each select="dim:field[@element='identifier' and @qualifier='uri']">
-		                    <a>
-		                        <xsl:attribute name="href">
-		                            <xsl:copy-of select="./node()"/>
-		                        </xsl:attribute>
-		                        <xsl:copy-of select="./node()"/>
-		                    </a>
-		                    <xsl:if test="count(following-sibling::dim:field[@element='identifier' and @qualifier='uri']) != 0">
-		                    	<br/>
-		                    </xsl:if>
-	                    </xsl:for-each>
-	                </td>
-	            </tr>
+                    <td><span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.item-uri</i18n:text>:</span></td>
+                    <td>
+                        <xsl:for-each select="dim:field[@element='identifier' and @qualifier='uri']">
+                            <a>
+                                <xsl:attribute name="href">
+                                    <xsl:copy-of select="./node()"/>
+                                </xsl:attribute>
+                                <xsl:copy-of select="./node()"/>
+                            </a>
+                            <xsl:if test="count(following-sibling::dim:field[@element='identifier' and @qualifier='uri']) != 0">
+                                <br/>
+                            </xsl:if>
+                        </xsl:for-each>
+                    </td>
+                </tr>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$otherPhase"/>
@@ -391,110 +391,110 @@
 
 
 
-		<!-- Type row -->
-		 <xsl:when test="$clause = 11 and (dim:field[@element='type' and not(@qualifier)])">
+        <!-- Type row -->
+         <xsl:when test="$clause = 11 and (dim:field[@element='type' and not(@qualifier)])">
                     <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>Type</i18n:text>:</span></td>
-	                <td>
-	                <xsl:if test="count(dim:field[@element='type' and not(@qualifier)]) &gt; 1 and not(count(dim:field[@element='type' and @qualifier='type']) &gt; 1)">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                <xsl:for-each select="dim:field[@element='type' and not(@qualifier)]">
-		                <xsl:copy-of select="./node()"/>
-		                <xsl:if test="count(following-sibling::dim:field[@element='type' and not(@qualifier)]) != 0">
-	                    	<hr class="metadata-seperator"/>
-	                    </xsl:if>
-	               	</xsl:for-each>
-	               	<xsl:if test="count(dim:field[@element='type' and not(@qualifier)]) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                </td>
-	            </tr>
+                    <td><span class="bold"><i18n:text>Type</i18n:text>:</span></td>
+                    <td>
+                    <xsl:if test="count(dim:field[@element='type' and not(@qualifier)]) &gt; 1 and not(count(dim:field[@element='type' and @qualifier='type']) &gt; 1)">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    <xsl:for-each select="dim:field[@element='type' and not(@qualifier)]">
+                        <xsl:copy-of select="./node()"/>
+                        <xsl:if test="count(following-sibling::dim:field[@element='type' and not(@qualifier)]) != 0">
+                            <hr class="metadata-seperator"/>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='type' and not(@qualifier)]) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    </td>
+                </tr>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$otherPhase"/>
               </xsl:call-template>
           </xsl:when>
 
-		<!-- Journal Title row -->
-		   <xsl:when test="$clause = 12 and (dim:field[@element='title' and @qualifier='jtitle'])">
+        <!-- Journal Title row -->
+           <xsl:when test="$clause = 12 and (dim:field[@element='title' and @qualifier='jtitle'])">
                     <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>Journal Title</i18n:text>:</span></td>
-	                <td>
-	                <xsl:if test="count(dim:field[@element='title' and @qualifier='jtitle']) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                <xsl:for-each select="dim:field[@element='title' and @qualifier='jtitle']">
-		                <xsl:copy-of select="./node()"/>
-		                <xsl:if test="count(following-sibling::dim:field[@element='title' and @qualifier='jtitle']) != 0">
-	                    	<hr class="metadata-seperator"/>
-	                    </xsl:if>
-	              	</xsl:for-each>
-	              	<xsl:if test="count(dim:field[@element='title' and @qualifier='jtitle']) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                </td>
-	            </tr>
+                    <td><span class="bold"><i18n:text>Journal Title</i18n:text>:</span></td>
+                    <td>
+                    <xsl:if test="count(dim:field[@element='title' and @qualifier='jtitle']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    <xsl:for-each select="dim:field[@element='title' and @qualifier='jtitle']">
+                        <xsl:copy-of select="./node()"/>
+                        <xsl:if test="count(following-sibling::dim:field[@element='title' and @qualifier='jtitle']) != 0">
+                            <hr class="metadata-seperator"/>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='title' and @qualifier='jtitle']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    </td>
+                </tr>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$otherPhase"/>
               </xsl:call-template>
           </xsl:when>
 
-		 <!-- Identifier URL row -->
-		   <xsl:when test="$clause = 13 and (dim:field[@element='identifier' and @qualifier='url'])">
+         <!-- Identifier URL row -->
+           <xsl:when test="$clause = 13 and (dim:field[@element='identifier' and @qualifier='url'])">
                     <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>URL</i18n:text>:</span></td>
-	                <td>
-	                <xsl:if test="count(dim:field[@element='identifier' and @qualifier='url']) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                <xsl:for-each select="dim:field[@element='identifier' and @qualifier='url']">
-		                    <a>
-		                        <xsl:attribute name="href">
-		                            <xsl:copy-of select="./node()"/>
-		                        </xsl:attribute>
-		                        <xsl:copy-of select="./node()"/>
-		                    </a>
-		                    <xsl:if test="count(following-sibling::dim:field[@element='identifier' and @qualifier='url']) != 0">
-		                    	<br/>
-		                    </xsl:if>
-	                    </xsl:for-each>
-	              	<xsl:if test="count(dim:field[@element='identifier' and @qualifier='url']) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                </td>
-	            </tr>
+                    <td><span class="bold"><i18n:text>URL</i18n:text>:</span></td>
+                    <td>
+                    <xsl:if test="count(dim:field[@element='identifier' and @qualifier='url']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    <xsl:for-each select="dim:field[@element='identifier' and @qualifier='url']">
+                            <a>
+                                <xsl:attribute name="href">
+                                    <xsl:copy-of select="./node()"/>
+                                </xsl:attribute>
+                                <xsl:copy-of select="./node()"/>
+                            </a>
+                            <xsl:if test="count(following-sibling::dim:field[@element='identifier' and @qualifier='url']) != 0">
+                                <br/>
+                            </xsl:if>
+                        </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='identifier' and @qualifier='url']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    </td>
+                </tr>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$otherPhase"/>
               </xsl:call-template>
           </xsl:when>
 
-		    <!-- Identifier DOI row -->
-		   <xsl:when test="$clause = 14 and (dim:field[@element='identifier' and @qualifier='doi'])">
+            <!-- Identifier DOI row -->
+           <xsl:when test="$clause = 14 and (dim:field[@element='identifier' and @qualifier='doi'])">
                     <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>DOI</i18n:text>:</span></td>
-	                <td>
-	                <xsl:if test="count(dim:field[@element='identifier' and @qualifier='doi']) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                <xsl:for-each select="dim:field[@element='identifier' and @qualifier='doi']">
-		                    <a>
-		                        <xsl:attribute name="href">
-		                            <xsl:copy-of select="./node()"/>
-		                        </xsl:attribute>
-		                        <xsl:copy-of select="./node()"/>
-		                    </a>
-		                    <xsl:if test="count(following-sibling::dim:field[@element='identifier' and @qualifier='doi']) != 0">
-		                    	<br/>
-		                    </xsl:if>
-	                    </xsl:for-each>
-	              	<xsl:if test="count(dim:field[@element='identifier' and @qualifier='doi']) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                </td>
-	            </tr>
+                    <td><span class="bold"><i18n:text>DOI</i18n:text>:</span></td>
+                    <td>
+                    <xsl:if test="count(dim:field[@element='identifier' and @qualifier='doi']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    <xsl:for-each select="dim:field[@element='identifier' and @qualifier='doi']">
+                            <a>
+                                <xsl:attribute name="href">
+                                    <xsl:copy-of select="./node()"/>
+                                </xsl:attribute>
+                                <xsl:copy-of select="./node()"/>
+                            </a>
+                            <xsl:if test="count(following-sibling::dim:field[@element='identifier' and @qualifier='doi']) != 0">
+                                <br/>
+                            </xsl:if>
+                        </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='identifier' and @qualifier='doi']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    </td>
+                </tr>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$otherPhase"/>
@@ -502,29 +502,29 @@
           </xsl:when>
 
              <!-- URL for datafile row -->
-		  <xsl:when test="$clause = 15 and (dim:field[@element='identifier' and @qualifier='dataurl'])">
+          <xsl:when test="$clause = 15 and (dim:field[@element='identifier' and @qualifier='dataurl'])">
                     <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>URL for datafile</i18n:text>:</span></td>
-	                <td>
-	                <xsl:if test="count(dim:field[@element='identifier' and @qualifier='dataurl']) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                <xsl:for-each select="dim:field[@element='identifier' and @qualifier='dataurl']">
-		                    <a>
-		                        <xsl:attribute name="href">
-		                            <xsl:copy-of select="./node()"/>
-		                        </xsl:attribute>
-		                        <xsl:copy-of select="./node()"/>
-		                    </a>
-		                    <xsl:if test="count(following-sibling::dim:field[@element='identifier' and @qualifier='dataurl']) != 0">
-		                    	<br/>
-		                    </xsl:if>
-	                    </xsl:for-each>
-	              	<xsl:if test="count(dim:field[@element='identifier' and @qualifier='dataurl']) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                </td>
-	            </tr>
+                    <td><span class="bold"><i18n:text>URL for datafile</i18n:text>:</span></td>
+                    <td>
+                    <xsl:if test="count(dim:field[@element='identifier' and @qualifier='dataurl']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    <xsl:for-each select="dim:field[@element='identifier' and @qualifier='dataurl']">
+                            <a>
+                                <xsl:attribute name="href">
+                                    <xsl:copy-of select="./node()"/>
+                                </xsl:attribute>
+                                <xsl:copy-of select="./node()"/>
+                            </a>
+                            <xsl:if test="count(following-sibling::dim:field[@element='identifier' and @qualifier='dataurl']) != 0">
+                                <br/>
+                            </xsl:if>
+                        </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='identifier' and @qualifier='dataurl']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    </td>
+                </tr>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$otherPhase"/>
@@ -532,55 +532,85 @@
           </xsl:when>
 
 
-		 <!-- Status row -->
-		<xsl:when test="$clause = 16 and (dim:field[@element='identifier' and @qualifier='status'])">
+         <!-- Status row -->
+        <xsl:when test="$clause = 16 and (dim:field[@element='identifier' and @qualifier='status'])">
                     <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>Status</i18n:text>:</span></td>
-	                <td>
-	                <xsl:if test="count(dim:field[@element='identifier' and @qualifier='status']) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                <xsl:for-each select="dim:field[@element='identifier' and @qualifier='status']">
-		                <xsl:copy-of select="./node()"/>
-		                <xsl:if test="count(following-sibling::dim:field[@element='identifier' and @qualifier='status']) != 0">
-	                    	<hr class="metadata-seperator"/>
-	                    </xsl:if>
-	              	</xsl:for-each>
-	              	<xsl:if test="count(dim:field[@element='identifier' and @qualifier='status']) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                </td>
-	            </tr>
+                    <td><span class="bold"><i18n:text>Status</i18n:text>:</span></td>
+                    <td>
+                    <xsl:if test="count(dim:field[@element='identifier' and @qualifier='status']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    <xsl:for-each select="dim:field[@element='identifier' and @qualifier='status']">
+                        <xsl:copy-of select="./node()"/>
+                        <xsl:if test="count(following-sibling::dim:field[@element='identifier' and @qualifier='status']) != 0">
+                            <hr class="metadata-seperator"/>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='identifier' and @qualifier='status']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    </td>
+                </tr>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$otherPhase"/>
               </xsl:call-template>
           </xsl:when>
 
-		<!-- Google URL row -->
-		<xsl:when test="$clause = 17 and (dim:field[@element='identifier' and @qualifier='googleurl'])">
+        <!-- Google URL row -->
+        <xsl:when test="$clause = 17 and (dim:field[@element='identifier' and @qualifier='googleurl'])">
                     <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>Google book URL</i18n:text>:</span></td>
-	                <td>
-	                <xsl:if test="count(dim:field[@element='identifier' and @qualifier='googleurl']) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                <xsl:for-each select="dim:field[@element='identifier' and @qualifier='googleurl']">
-		                    <a>
-		                        <xsl:attribute name="href">
-		                            <xsl:copy-of select="./node()"/>
-		                        </xsl:attribute>
-		                        <xsl:copy-of select="./node()"/>
-		                    </a>
-		                    <xsl:if test="count(following-sibling::dim:field[@element='identifier' and @qualifier='googleurl']) != 0">
-		                    	<br/>
-		                    </xsl:if>
-	                    </xsl:for-each>
-	              	<xsl:if test="count(dim:field[@element='identifier' and @qualifier='googleurl']) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                </td>
-	            </tr>
+                    <td><span class="bold"><i18n:text>Google book URL</i18n:text>:</span></td>
+                    <td>
+                    <xsl:if test="count(dim:field[@element='identifier' and @qualifier='googleurl']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    <xsl:for-each select="dim:field[@element='identifier' and @qualifier='googleurl']">
+                            <a>
+                                <xsl:attribute name="href">
+                                    <xsl:copy-of select="./node()"/>
+                                </xsl:attribute>
+                                <xsl:copy-of select="./node()"/>
+                            </a>
+                            <xsl:if test="count(following-sibling::dim:field[@element='identifier' and @qualifier='googleurl']) != 0">
+                                <br/>
+                            </xsl:if>
+                        </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='identifier' and @qualifier='googleurl']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    </td>
+                </tr>
+              <xsl:call-template name="itemSummaryView-DIM-fields">
+                <xsl:with-param name="clause" select="($clause + 1)"/>
+                <xsl:with-param name="phase" select="$otherPhase"/>
+              </xsl:call-template>
+          </xsl:when>
+
+<!-- link.video row -->
+           <xsl:when test="$clause = 18 and (dim:field[@element='link' and @qualifier='video'])">
+                    <tr class="ds-table-row {$phase}">
+                    <td><span class="bold"><i18n:text>Related video</i18n:text>:</span></td>
+                    <td>
+                    <xsl:if test="count(dim:field[@element='link' and @qualifier='video']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    <xsl:for-each select="dim:field[@element='link' and @qualifier='video']">
+                            <a>
+                                <xsl:attribute name="href">
+                                    <xsl:copy-of select="./node()"/>
+                                </xsl:attribute>
+                                <xsl:copy-of select="./node()"/>
+                            </a>
+                            <xsl:if test="count(following-sibling::dim:field[@element='link' and @qualifier='video']) != 0">
+                                <br/>
+                            </xsl:if>
+                        </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='link' and @qualifier='video']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    </td>
+                </tr>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$otherPhase"/>
@@ -588,22 +618,138 @@
           </xsl:when>
 
 
-
-
-
-		<!-- River Basin row -->
-            <xsl:when test="$clause = 18 and (dim:field[@element='river' and @qualifier='basin'])">
+           <!-- link.audio row -->
+           <xsl:when test="$clause = 19 and (dim:field[@element='link' and @qualifier='audio'])">
                     <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>River Basin</i18n:text>:</span></td>
-	                <td>
-	                <xsl:for-each select="//dim:field[@element='river'and @qualifier='basin']">
+                    <td><span class="bold"><i18n:text>Related audio</i18n:text>:</span></td>
+                    <td>
+                    <xsl:if test="count(dim:field[@element='link' and @qualifier='audio']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    <xsl:for-each select="dim:field[@element='link' and @qualifier='audio']">
+                            <a>
+                                <xsl:attribute name="href">
+                                    <xsl:copy-of select="./node()"/>
+                                </xsl:attribute>
+                                <xsl:copy-of select="./node()"/>
+                            </a>
+                            <xsl:if test="count(following-sibling::dim:field[@element='link' and @qualifier='audio']) != 0">
+                                <br/>
+                            </xsl:if>
+                        </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='link' and @qualifier='audio']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    </td>
+                </tr>
+              <xsl:call-template name="itemSummaryView-DIM-fields">
+                <xsl:with-param name="clause" select="($clause + 1)"/>
+                <xsl:with-param name="phase" select="$otherPhase"/>
+              </xsl:call-template>
+          </xsl:when> 
+
+            <!-- link.photo row -->
+           <xsl:when test="$clause = 20 and (dim:field[@element='link' and @qualifier='photo'])">
+                    <tr class="ds-table-row {$phase}">
+                    <td><span class="bold"><i18n:text>Related photo</i18n:text>:</span></td>
+                    <td>
+                    <xsl:if test="count(dim:field[@element='link' and @qualifier='photo']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    <xsl:for-each select="dim:field[@element='link' and @qualifier='photo']">
+                            <a>
+                                <xsl:attribute name="href">
+                                    <xsl:copy-of select="./node()"/>
+                                </xsl:attribute>
+                                <xsl:copy-of select="./node()"/>
+                            </a>
+                            <xsl:if test="count(following-sibling::dim:field[@element='link' and @qualifier='photo']) != 0">
+                                <br/>
+                            </xsl:if>
+                        </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='link' and @qualifier='photo']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    </td>
+                </tr>
+              <xsl:call-template name="itemSummaryView-DIM-fields">
+                <xsl:with-param name="clause" select="($clause + 1)"/>
+                <xsl:with-param name="phase" select="$otherPhase"/>
+              </xsl:call-template>
+          </xsl:when> 
+
+
+
+           <!-- Related reference link row -->
+           <xsl:when test="$clause = 21 and (dim:field[@element='link' and @qualifier='reference'])">
+                    <tr class="ds-table-row {$phase}">
+                    <td><span class="bold"><i18n:text>Related reference</i18n:text>:</span></td>
+                    <td>
+                    <xsl:if test="count(dim:field[@element='link' and @qualifier='reference']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    <xsl:for-each select="dim:field[@element='link' and @qualifier='reference']">
+                            <a>
+                                <xsl:attribute name="href">
+                                    <xsl:copy-of select="./node()"/>
+                                </xsl:attribute>
+                                <xsl:copy-of select="./node()"/>
+                            </a>
+                            <xsl:if test="count(following-sibling::dim:field[@element='link' and @qualifier='reference']) != 0">
+                                <br/>
+                            </xsl:if>
+                        </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='link' and @qualifier='reference']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    </td>
+                </tr>
+              <xsl:call-template name="itemSummaryView-DIM-fields">
+                <xsl:with-param name="clause" select="($clause + 1)"/>
+                <xsl:with-param name="phase" select="$otherPhase"/>
+              </xsl:call-template>
+          </xsl:when> 
+
+          <!-- Related Reference for citation row -->
+          <xsl:when test="$clause = 22 and (dim:field[@element='link' and @qualifier='citation'])">
+                    <tr class="ds-table-row {$phase}">
+                    <td><span class="bold"><i18n:text>Related citation</i18n:text>:</span></td>
+                    <td>
+                    <xsl:if test="count(dim:field[@element='link' and @qualifier='citation']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    <xsl:for-each select="dim:field[@element='link' and @qualifier='citation']">
+                        <xsl:copy-of select="./node()"/>
+                        <xsl:if test="count(following-sibling::dim:field[@element='link' and @qualifier='citation']) != 0">
+                            <hr class="metadata-seperator"/>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='link' and @qualifier='citation']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    </td>
+                </tr>
+              <xsl:call-template name="itemSummaryView-DIM-fields">
+                <xsl:with-param name="clause" select="($clause + 1)"/>
+                <xsl:with-param name="phase" select="$otherPhase"/>
+              </xsl:call-template>
+          </xsl:when> 
+
+
+
+        <!-- River Basin row -->
+            <xsl:when test="$clause = 23 and (dim:field[@element='river' and @qualifier='basin'])">
+                    <tr class="ds-table-row {$phase}">
+                    <td><span class="bold"><i18n:text>River Basin</i18n:text>:</span></td>
+                    <td>
+                    <xsl:for-each select="//dim:field[@element='river'and @qualifier='basin']">
                       <xsl:variable name="lnk"><xsl:value-of select="."/></xsl:variable>
 
                             <a href="/browse?value={.}&amp;type=basin"><xsl:value-of select="."/></a><xsl:if test="position()!=last()"><xsl:text>, </xsl:text></xsl:if>
 
                     </xsl:for-each>
-	                </td>
-	            </tr>
+                    </td>
+                </tr>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$otherPhase"/>
@@ -614,20 +760,20 @@
 
 
 
-		  <!-- Country Focus row -->
+          <!-- Country Focus row -->
 
-		<xsl:when test="$clause = 19 and (dim:field[@element='cplace' and @qualifier='country'])">
+        <xsl:when test="$clause = 24 and (dim:field[@element='cplace' and @qualifier='country'])">
                     <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>Country</i18n:text>:</span></td>
-	                <td>
-	                <xsl:for-each select="//dim:field[@element='cplace'and @qualifier='country']">
+                    <td><span class="bold"><i18n:text>Country</i18n:text>:</span></td>
+                    <td>
+                    <xsl:for-each select="//dim:field[@element='cplace'and @qualifier='country']">
                       <xsl:variable name="lnk"><xsl:value-of select="."/></xsl:variable>
 
                             <a href="/browse?value={.}&amp;type=country"><xsl:value-of select="."/></a><xsl:if test="position()!=last()"><xsl:text>, </xsl:text></xsl:if>
 
                     </xsl:for-each>
-	                </td>
-	            </tr>
+                    </td>
+                </tr>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$otherPhase"/>
@@ -636,18 +782,18 @@
 
 
          <!-- Region Focus row -->
-		<xsl:when test="$clause = 20 and (dim:field[@element='rplace' and @qualifier='region'])">
+        <xsl:when test="$clause = 25 and (dim:field[@element='rplace' and @qualifier='region'])">
                     <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>Region</i18n:text>:</span></td>
-	                <td>
-	                <xsl:for-each select="//dim:field[@element='rplace'and @qualifier='region']">
+                    <td><span class="bold"><i18n:text>Region</i18n:text>:</span></td>
+                    <td>
+                    <xsl:for-each select="//dim:field[@element='rplace'and @qualifier='region']">
                       <xsl:variable name="lnk"><xsl:value-of select="."/></xsl:variable>
 
                             <a href="/browse?value={.}&amp;type=region"><xsl:value-of select="."/></a><xsl:if test="position()!=last()"><xsl:text>, </xsl:text></xsl:if>
 
                     </xsl:for-each>
-	                </td>
-	            </tr>
+                    </td>
+                </tr>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$otherPhase"/>
@@ -655,19 +801,64 @@
           </xsl:when>
 
 
-	<!-- CRP Subject row -->
-		<xsl:when test="$clause = 21 and (dim:field[@element='crsubject' and @qualifier='crpsubject'])">
+    <!-- CRP Subject row -->
+        <xsl:when test="$clause = 26 and (dim:field[@element='crsubject' and @qualifier='crpsubject'])">
                     <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>CGIAR research program</i18n:text>:</span></td>
-	                <td>
-	                <xsl:for-each select="//dim:field[@element='crsubject'and @qualifier='crpsubject']">
+                    <td><span class="bold"><i18n:text>CGIAR research program</i18n:text>:</span></td>
+                    <td>
+                    <xsl:for-each select="//dim:field[@element='crsubject'and @qualifier='crpsubject']">
                       <xsl:variable name="lnk"><xsl:value-of select="."/></xsl:variable>
 
                             <a href="/browse?value={.}&amp;type=crpsubject"><xsl:value-of select="."/></a><xsl:if test="position()!=last()"><xsl:text>, </xsl:text></xsl:if>
 
                     </xsl:for-each>
-	                </td>
-	            </tr>
+                    </td>
+                </tr>
+              <xsl:call-template name="itemSummaryView-DIM-fields">
+                <xsl:with-param name="clause" select="($clause + 1)"/>
+                <xsl:with-param name="phase" select="$otherPhase"/>
+              </xsl:call-template>
+          </xsl:when>
+
+        <!-- ILRI Subject row -->
+        <xsl:when test="$clause = 27 and (dim:field[@element='isubject' and @qualifier='ilrisubject'])">
+                    <tr class="ds-table-row {$phase}">
+                    <td><span class="bold"><i18n:text>ILRI Subject Focus</i18n:text>:</span></td>
+                    <td>
+                    <xsl:for-each select="//dim:field[@element='isubject'and @qualifier='ilrisubject']">
+                      <xsl:variable name="lnk"><xsl:value-of select="."/></xsl:variable>
+
+                            <a href="/browse?value={.}&amp;type=ilrisubject"><xsl:value-of select="."/></a><xsl:if test="position()!=last()"><xsl:text>, </xsl:text></xsl:if>
+
+                    </xsl:for-each>
+                    </td>
+                </tr>
+              <xsl:call-template name="itemSummaryView-DIM-fields">
+                <xsl:with-param name="clause" select="($clause + 1)"/>
+                <xsl:with-param name="phase" select="$otherPhase"/>
+              </xsl:call-template>
+        </xsl:when>
+
+
+              <!--  PROJECT SPONSOR row -->
+          <xsl:when test="$clause = 28 and (dim:field[@element='description' and @qualifier='sponsorship'])">
+                    <tr class="ds-table-row {$phase}">
+                    <td><span class="bold"><i18n:text>Project Sponsor</i18n:text>:</span></td>
+                    <td>
+                    <xsl:if test="count(dim:field[@element='description' and @qualifier='sponsorship']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    <xsl:for-each select="dim:field[@element='description' and @qualifier='sponsorship']">
+                        <xsl:copy-of select="./node()"/>
+                        <xsl:if test="count(following-sibling::dim:field[@element='description' and @qualifier='sponsorship']) != 0">
+                            <hr class="metadata-seperator"/>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='description' and @qualifier='sponsorship']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    </td>
+                </tr>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$otherPhase"/>
@@ -675,26 +866,25 @@
           </xsl:when>
 
 
-
-			  <!--  PROJECT SPONSOR row -->
-		  <xsl:when test="$clause = 22 and (dim:field[@element='description' and @qualifier='sponsorship'])">
+        <!-- Fund row -->
+        <xsl:when test="$clause = 29 and (dim:field[@element='identifier' and @qualifier='fund'])">
                     <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>Project Sponsor</i18n:text>:</span></td>
-	                <td>
-	                <xsl:if test="count(dim:field[@element='description' and @qualifier='sponsorship']) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                <xsl:for-each select="dim:field[@element='description' and @qualifier='sponsorship']">
-		                <xsl:copy-of select="./node()"/>
-		                <xsl:if test="count(following-sibling::dim:field[@element='description' and @qualifier='sponsorship']) != 0">
-	                    	<hr class="metadata-seperator"/>
-	                    </xsl:if>
-	              	</xsl:for-each>
-	              	<xsl:if test="count(dim:field[@element='description' and @qualifier='sponsorship']) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                </td>
-	            </tr>
+                    <td><span class="bold"><i18n:text>Sponsor Project Number</i18n:text>:</span></td>
+                    <td>
+                    <xsl:if test="count(dim:field[@element='identifier' and @qualifier='fund']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    <xsl:for-each select="dim:field[@element='identifier' and @qualifier='fund']">
+                        <xsl:copy-of select="./node()"/>
+                        <xsl:if test="count(following-sibling::dim:field[@element='identifier' and @qualifier='fund']) != 0">
+                            <hr class="metadata-seperator"/>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='identifier' and @qualifier='fund']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    </td>
+                </tr>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$otherPhase"/>
@@ -702,76 +892,50 @@
           </xsl:when>
 
 
-		<!-- Fund row -->
-		<xsl:when test="$clause = 23 and (dim:field[@element='identifier' and @qualifier='fund'])">
+         <!-- ISI Journal -->
+          <xsl:when test="$clause = 30 and (dim:field[@element='isijournal' and not(@qualifier)])">
                     <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>Sponsor Project Number</i18n:text>:</span></td>
-	                <td>
-	                <xsl:if test="count(dim:field[@element='identifier' and @qualifier='fund']) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                <xsl:for-each select="dim:field[@element='identifier' and @qualifier='fund']">
-		                <xsl:copy-of select="./node()"/>
-		                <xsl:if test="count(following-sibling::dim:field[@element='identifier' and @qualifier='fund']) != 0">
-	                    	<hr class="metadata-seperator"/>
-	                    </xsl:if>
-	              	</xsl:for-each>
-	              	<xsl:if test="count(dim:field[@element='identifier' and @qualifier='fund']) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                </td>
-	            </tr>
+                    <td><span class="bold"><i18n:text>ISI Journal</i18n:text>:</span></td>
+                    <td>
+                    <xsl:if test="count(dim:field[@element='isijournal' and not(@qualifier)]) &gt; 1 and not(count(dim:field[@element='isijournal' and @qualifier='isijournal']) &gt; 1)">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    <xsl:for-each select="dim:field[@element='isijournal' and not(@qualifier)]">
+                        <xsl:copy-of select="./node()"/>
+                        <xsl:if test="count(following-sibling::dim:field[@element='isijournal' and not(@qualifier)]) != 0">
+                            <hr class="metadata-seperator"/>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='isijournal' and not(@qualifier)]) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    </td>
+                </tr>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$otherPhase"/>
               </xsl:call-template>
           </xsl:when>
 
-
-	     <!-- ISI Journal -->
-		  <xsl:when test="$clause = 24 and (dim:field[@element='isijournal' and not(@qualifier)])">
+         <!-- ANIMAL SPECIES -->
+        <xsl:when test="$clause = 31 and (dim:field[@element='Species' and @qualifier='animal'])">
                     <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>ISI Journal</i18n:text>:</span></td>
-	                <td>
-	                <xsl:if test="count(dim:field[@element='isijournal' and not(@qualifier)]) &gt; 1 and not(count(dim:field[@element='isijournal' and @qualifier='isijournal']) &gt; 1)">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                <xsl:for-each select="dim:field[@element='isijournal' and not(@qualifier)]">
-		                <xsl:copy-of select="./node()"/>
-		                <xsl:if test="count(following-sibling::dim:field[@element='isijournal' and not(@qualifier)]) != 0">
-	                    	<hr class="metadata-seperator"/>
-	                    </xsl:if>
-	               	</xsl:for-each>
-	               	<xsl:if test="count(dim:field[@element='isijournal' and not(@qualifier)]) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                </td>
-	            </tr>
-              <xsl:call-template name="itemSummaryView-DIM-fields">
-                <xsl:with-param name="clause" select="($clause + 1)"/>
-                <xsl:with-param name="phase" select="$otherPhase"/>
-              </xsl:call-template>
-          </xsl:when>
-
-		 <!-- ANIMAL SPECIES -->
-		<xsl:when test="$clause =25 and (dim:field[@element='Species' and @qualifier='animal'])">
-                    <tr class="ds-table-row {$phase}">
-	                <td><span class="bold"><i18n:text>Animal species</i18n:text>:</span></td>
-	                <td>
-	                <xsl:if test="count(dim:field[@element='Species' and @qualifier='animal']) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                <xsl:for-each select="dim:field[@element='Species' and @qualifier='animal']">
-		                <xsl:copy-of select="./node()"/>
-		                <xsl:if test="count(following-sibling::dim:field[@element='Species' and @qualifier='animal']) != 0">
-	                    	<hr class="metadata-seperator"/>
-	                    </xsl:if>
-	              	</xsl:for-each>
-	              	<xsl:if test="count(dim:field[@element='Species' and @qualifier='animal']) &gt; 1">
-	                	<hr class="metadata-seperator"/>
-	                </xsl:if>
-	                </td>
-	            </tr>
+                    <td><span class="bold"><i18n:text>Animal species</i18n:text>:</span></td>
+                    <td>
+                    <xsl:if test="count(dim:field[@element='Species' and @qualifier='animal']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    <xsl:for-each select="dim:field[@element='Species' and @qualifier='animal']">
+                        <xsl:copy-of select="./node()"/>
+                        <xsl:if test="count(following-sibling::dim:field[@element='Species' and @qualifier='animal']) != 0">
+                            <hr class="metadata-seperator"/>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='Species' and @qualifier='animal']) &gt; 1">
+                        <hr class="metadata-seperator"/>
+                    </xsl:if>
+                    </td>
+                </tr>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$otherPhase"/>
@@ -787,7 +951,7 @@
           <!-- recurse without changing phase if we didn't output anything -->
           <xsl:otherwise>
             <!-- IMPORTANT: This test should be updated if clauses are added! -->
-            <xsl:if test="$clause &lt; 26">
+            <xsl:if test="$clause &lt; 32">
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$phase"/>
@@ -804,7 +968,7 @@
         <xsl:apply-templates select="mets:dmdSec/mets:mdWrap[@OTHERMDTYPE='DIM']/mets:xmlData/dim:dim"
             mode="itemDetailView-DIM"/>
 
-		<!-- Generate the bitstream information from the file section -->
+        <!-- Generate the bitstream information from the file section -->
         <xsl:choose>
             <xsl:when test="./mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL']">
                 <xsl:apply-templates select="./mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL']">
@@ -848,9 +1012,9 @@
                  <xsl:call-template name="renderCOinS"/>
             </xsl:attribute>
         </span>
-		<table class="ds-includeSet-table">
-		    <xsl:apply-templates mode="itemDetailView-DIM"/>
-		</table>
+        <table class="ds-includeSet-table">
+            <xsl:apply-templates mode="itemDetailView-DIM"/>
+        </table>
     </xsl:template>
 
     <xsl:template match="dim:field" mode="itemDetailView-DIM">
@@ -899,7 +1063,7 @@
                 <xsl:if test="mets:file/mets:FLocat/@xlink:label != ''">
                     <th><i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-description</i18n:text></th>
                 </xsl:if>
-		    </tr>
+            </tr>
             <xsl:choose>
                 <!-- If one exists and it's of text/html MIME type, only display the primary bitstream -->
                 <xsl:when test="mets:file[@ID=$primaryBitstream]/@MIMETYPE='text/html'">
@@ -910,7 +1074,7 @@
                 <!-- Otherwise, iterate over and display all of them -->
                 <xsl:otherwise>
                     <xsl:apply-templates select="mets:file">
-                     	<xsl:sort data-type="number" select="boolean(./@ID=$primaryBitstream)" order="descending" />
+                        <xsl:sort data-type="number" select="boolean(./@ID=$primaryBitstream)" order="descending" />
                         <xsl:sort select="mets:FLocat[@LOCTYPE='URL']/@xlink:title"/>
                         <xsl:with-param name="context" select="$context"/>
                     </xsl:apply-templates>
@@ -992,7 +1156,7 @@
                             <xsl:attribute name="href">
                                 <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
                             </xsl:attribute>
-                            <img alt="Thumbnail">
+                            <img alt="Thumbnail" style="max-width: 94px;">
                                 <xsl:attribute name="src">
                                     <xsl:value-of select="$context/mets:fileSec/mets:fileGrp[@USE='THUMBNAIL']/
                                         mets:file[@GROUPID=current()/@GROUPID]/mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
@@ -1010,12 +1174,12 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </td>
-	    <!-- Display the contents of 'Description' as long as at least one bitstream contains a description -->
-	    <xsl:if test="$context/mets:fileSec/mets:fileGrp[@USE='CONTENT']/mets:file/mets:FLocat/@xlink:label != ''">
-	        <td>
-	            <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:label"/>
-	        </td>
-	    </xsl:if>
+        <!-- Display the contents of 'Description' as long as at least one bitstream contains a description -->
+        <xsl:if test="$context/mets:fileSec/mets:fileGrp[@USE='CONTENT']/mets:file/mets:FLocat/@xlink:label != ''">
+            <td>
+                <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:label"/>
+            </td>
+        </xsl:if>
 
         </tr>
     </xsl:template>

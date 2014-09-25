@@ -194,8 +194,11 @@
         <theme name="IWMI" handle="10568/16814" path="IWMI/"/>
         <theme name="AgriFood" handle="10568/24754" path="AgriFood/"/>
         <theme name="LIVES" handle="10568/25101" path="LIVES/"/>
-        <theme name="Anancy" handle="10568/33438" path="Anancy/"/>
-        <theme name="WLE" handle="10568/33441" path="WLE/"/>
+        <theme name="CTA" handle="10568/42211" path="CTA/"/>
+        <theme name="WLE" handle="10568/34494" path="WLE/"/>
+        <theme name="Humidtropics" handle="10568/35409" path="Humidtropics/"/>
+        <theme name="Bioversity" handle="10568/35442" path="Bioversity/"/>
+        <theme name="CIAT" handle="10568/35697" path="CIAT/"/>
 
         <!--Default theme for the top-level CGSPACE-->
         <theme name="CGSPACE" regex=".*" path="CGSPACE/"/>

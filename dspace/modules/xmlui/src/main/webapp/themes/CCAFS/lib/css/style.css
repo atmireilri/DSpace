@@ -77,9 +77,9 @@ select.multiple {
 #ds-header-logo {
     float:left;
     width: 980px;
-    height: 97px;
+    height: 96px;
     margin-top: 10px;
-    background: url("../../images/climatechangefinal.jpg");
+    background: url("../../images/banner.jpg");
     background-repeat: no-repeat;
     background-color: transparent;
     margin-right: 15px;
@@ -1168,6 +1168,6 @@ margin: 2px 2px 0px 2px;
 /* border: 1px solid rgb(240, 240, 210); */
 }
 
-table.ds-includeSet-table {
+table.ds-includeSet-table, table.file-list {
     margin-left: 10px;
 }

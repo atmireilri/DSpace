@@ -326,7 +326,9 @@
      <field name="dateYear" type="string" indexed="true" stored="true" required="false" multiValued="false" />
      <field name="dateYearMonth" type="string" indexed="true" stored="true" required="false" multiValued="false" />
 
-
+    <!-- for Atmire Content and Usage Analysis (CUA) module -->
+    <field name="bitstreamId" type="integer" indexed="true" stored="true" required="false" multiValued="true" />
+    <field name="bitstreamCount" type="integer" indexed="true" stored="true" required="false" multiValued="true" />
 
  </fields>
 

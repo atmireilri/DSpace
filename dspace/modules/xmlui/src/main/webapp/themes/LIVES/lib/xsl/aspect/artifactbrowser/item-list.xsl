@@ -75,7 +75,8 @@
     <!--handles the rendering of a single item in a list in file mode-->
     <xsl:template match="dim:dim" mode="itemSummaryList-DIM-file">
         <xsl:param name="href"/>
-        <xsl:variable name="metadataWidth" select="675 - $thumbnail.maxwidth - 94"/>
+        <!-- hardcode 94 to get a decent size thumbnail ($thumbnail.maxwidth is much higher in dspace.cfg-->
+        <xsl:variable name="metadataWidth" select="675 - 94 - 30"/>
         <div class="item-metadata" style="width: {$metadataWidth}px;">
             <span class="bold"><i18n:text>xmlui.dri2xhtml.pioneer.title</i18n:text><xsl:text>:</xsl:text></span>
             <span class="content" style="width: {$metadataWidth - 110}px;">
@@ -136,8 +137,8 @@
                     </xsl:attribute>
 
                     <span class="content" style="width: {$metadataWidth - 110}px;">
-                      <xsl:for-each select="//dim:field[@element='cisubject'and @qualifier='ciforsubject']">
-                <a href="/browse?value={.}&amp;type=ciforsubject"><xsl:value-of select="."/></a><xsl:if test="position()!=last()"><xsl:text>, </xsl:text></xsl:if>
+                      <xsl:for-each select="//dim:field[@element='isubject'and @qualifier='ilrisubject']">
+                <a href="/browse?value={.}&amp;type=ilrisubject"><xsl:value-of select="."/></a><xsl:if test="position()!=last()"><xsl:text>, </xsl:text></xsl:if>
                       </xsl:for-each>
                     </span>
                 </xsl:element>
@@ -145,10 +146,19 @@
 
 
 		   <xsl:if test="dim:field[@element='type']">
-                <span class="bold"><i18n:text>Type</i18n:text><xsl:text>:</xsl:text></span>
+                <span class="bold"><i18n:text>Output Type</i18n:text><xsl:text>:</xsl:text></span>
                 <span class="content" style="width: {$metadataWidth - 110}px;">
-                    <xsl:value-of
-                            select="substring(dim:field[@element='type']/node(),1,30)"/>
+                <xsl:element name="a">
+                    <xsl:attribute name="href">
+                        <xsl:value-of select="$href"/>
+                    </xsl:attribute>
+
+                    <span class="content" style="width: {$metadataWidth - 110}px;">
+                      <xsl:for-each select="//dim:field[@element='type'and @qualifier='output']">
+                <a href="/browse?value={.}&amp;type=output"><xsl:value-of select="."/></a><xsl:if test="position()!=last()"><xsl:text>, </xsl:text></xsl:if>
+                      </xsl:for-each>
+                    </span>
+                </xsl:element>
                 </span>
             </xsl:if>
 
@@ -266,12 +276,12 @@
 
     <xsl:template match="mets:fileSec" mode="artifact-preview">
         <xsl:param name="href"/>
-        <div class="thumbnail-wrapper">
+        <div class="thumbnail-wrapper" style="width: 94px;">
             <div class="artifact-preview">
                 <a class="image-link" href="{$href}">
                     <xsl:choose>
                         <xsl:when test="mets:fileGrp[@USE='THUMBNAIL']">
-                            <img alt="Thumbnail">
+                            <img alt="Thumbnail" style="max-width: 94px;">
                                 <xsl:attribute name="src">
                                     <xsl:value-of
                                             select="mets:fileGrp[@USE='THUMBNAIL']/mets:file/mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
@@ -279,7 +289,7 @@
                             </img>
                         </xsl:when>
                         <xsl:otherwise>
-                            <img alt="Icon" src="{concat($theme-path, '/images/mime.png')}" style="height: {$thumbnail.maxheight -78 }px;"/>
+                            <img alt="Icon" src="{concat($theme-path, '/images/mime.png')}" style="width: 94px"/>
                         </xsl:otherwise>
                     </xsl:choose>
                 </a>
