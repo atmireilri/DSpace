@@ -102,6 +102,7 @@
                         <map:transformer name="NamespaceFilter" src="org.dspace.app.xmlui.cocoon.NamespaceFilterTransformer"/>
                         <map:transformer name="RestrictedItem" src="org.dspace.app.xmlui.aspect.artifactbrowser.RestrictedItem"/>
                     <map:transformer name="chart" src="it.ipzs.charts.JFCTransformer"/>
+                    <map:transformer name="NotAuthorized" src="org.dspace.app.xmlui.aspect.statistics.NotAuthorized"/>
                 </map:transformers>
                 <map:matchers default="wildcard">
                         <map:matcher logger="sitemap.matcher.wildcard" name="wildcard"
@@ -188,6 +189,8 @@
                         </map:selector>
                         <!-- AuthenticatedSelector for forcing user to login if not authorized - PMD -->
                         <map:selector name="AuthenticatedSelector" src="org.dspace.app.xmlui.aspect.general.AuthenticatedSelector"/>
+
+                        <map:selector name="AuthenticateGraphSelector" src="org.dspace.app.xmlui.aspect.statistics.AuthenticateGraphSelector"/>
                 </map:selectors>
                 <map:readers default="resource">
                     <map:reader name="resource" src="org.apache.cocoon.reading.ResourceReader"
@@ -207,6 +210,7 @@
                     <map:reader name="JSONControlledVocabularyReader" src="org.dspace.app.xmlui.cocoon.JSONControlledVocabularyReader"/>
                     <map:reader name="AtmireModuleDocumentationReader" src="com.atmire.dspace.app.xmlui.aspect.atmiremodules.AtmireModuleDocumentationReader"/>
                     <map:reader name="StatExportReader" src="org.dspace.app.xmlui.aspect.statistics.ExportReader"/>
+                    <map:reader name="CSVStorageExporter" src="org.dspace.app.xmlui.aspect.statistics.csv.CSVExport"/>
                 </map:readers>
                 <map:actions>
                         <map:action name="locale" src="org.dspace.app.xmlui.cocoon.DSpaceLocaleAction"/>
@@ -454,6 +458,21 @@
                     <map:match pattern="JSON/cua/**">
                         <map:mount check-reload="no" src="aspects/json-cua.xmap" uri-prefix="JSON/cua/"/>
                     </map:match>
+
+                    <map:match pattern="csv/atmire/reporting-suite/storage-reports">
+                        <map:select type="AuthenticateGraphSelector">
+                            <map:when test="eperson">
+                                <map:read type="CSVStorageExporter"/>
+                            </map:when>
+                            <map:when test="personPresent">
+                                <!--Show a not authorized exception-->
+                                <map:transform type="NotAuthorized"/>
+                            </map:when>
+                            <map:otherwise>
+                                <map:act type="StartAuthentication"/>
+                            </map:otherwise>
+                        </map:select>
+                    </map:match>
                 </map:pipeline>
 
                 <!-- new AJAX menu (choices) responses for metadata authority control -->
@@ -662,6 +681,7 @@
                         <map:read src="static/{1}/{2}"/>
                     </map:match>
 
+
                     <!-- handle aspect resources -->
                     <map:match pattern="aspects/*/**">
                         <map:read src="aspects/{1}/{2}"/>
@@ -678,6 +698,12 @@
 
                     <map:match pattern="fins-img">
                         <map:generate type="FinsXMLGenerator"/>
+                        <map:act type="locale">
+                            <map:transform type="i18n">
+                                <map:parameter name="locale" value="{locale}"/>
+                            </map:transform>
+                        </map:act>
+
                         <map:serialize type="chart-png"/>
                     </map:match>
 
@@ -686,6 +712,12 @@
                             <map:parameter name="handle" value="{1}/{2}"/>
                             <map:parameter name="id" value="{3}"/>
                         </map:generate>
+                        <map:act type="locale">
+                            <map:transform type="i18n">
+                                <map:parameter name="locale" value="{locale}"/>
+                            </map:transform>
+                        </map:act>
+
                         <map:serialize type="chart-png"/>
                     </map:match>
 
@@ -694,6 +726,12 @@
                             <map:parameter name="handle" value="noHandle"/>
                             <map:parameter name="id" value="{1}"/>
                         </map:generate>
+                        <map:act type="locale">
+                            <map:transform type="i18n">
+                                <map:parameter name="locale" value="{locale}"/>
+                            </map:transform>
+                        </map:act>
+
                         <map:serialize type="chart-png"/>
                     </map:match>
 
@@ -702,6 +740,12 @@
                             <map:parameter name="handle" value="{1}/{2}"/>
                             <map:parameter name="id" value="{3}"/>
                         </map:generate>
+                        <map:act type="locale">
+                            <map:transform type="i18n">
+                                <map:parameter name="locale" value="{locale}"/>
+                            </map:transform>
+                        </map:act>
+
                         <map:serialize type="chart-map"/>
                     </map:match>
 
@@ -710,6 +754,12 @@
                             <map:parameter name="handle" value="{1}/{2}"/>
                             <map:parameter name="id" value="{3}"/>
                         </map:generate>
+                        <map:act type="locale">
+                            <map:transform type="i18n">
+                                <map:parameter name="locale" value="{locale}"/>
+                            </map:transform>
+                        </map:act>
+
                         <map:serialize type="xml"/>
                     </map:match>
 
@@ -727,7 +777,6 @@
                         <map:generate type="file" src="fins.xml"/>
                         <map:serialize type="xml"/>
                     </map:match>
-
 
                 </map:pipeline>
 

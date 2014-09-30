@@ -80,12 +80,12 @@
                         </resource>
                     </webResources>
                     <overlays>
-                        <overlay>
-                            <groupId>com.atmire</groupId>
-                            <artifactId>atmire-listings-and-reports-webapp</artifactId>
+                        <!--<overlay>-->
+                            <!--<groupId>com.atmire</groupId>-->
+                            <!--<artifactId>atmire-listings-and-reports-webapp</artifactId>-->
 
-                            <type>war</type>
-                        </overlay>
+                            <!--<type>war</type>-->
+                        <!--</overlay>-->
                         <overlay>
                             <groupId>org.dspace</groupId>
                             <artifactId>dspace-jspui</artifactId>
@@ -110,18 +110,22 @@
             <artifactId>additions</artifactId>
         </dependency>
 
+<!--
         <dependency>
             <groupId>com.atmire</groupId>
             <artifactId>atmire-listings-and-reports-webapp</artifactId>
             <version>${listings-and-reports.version.number}</version>
             <type>war</type>
         </dependency>
+-->
 
+<!--
         <dependency>
             <groupId>com.atmire</groupId>
             <artifactId>atmire-listings-and-reports-api</artifactId>
             <version>${listings-and-reports.version.number}</version>
         </dependency>
+-->
 
         <dependency>
             <groupId>org.dspace</groupId>

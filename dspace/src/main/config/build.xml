@@ -185,7 +185,7 @@ Common usage:
     <!-- Update an installation (except database)                      -->
     <!-- ============================================================= -->
 
-    <target name="update" depends="update_configs,update_code,update_webapps" description="Update installed code and web applications (without clobbering data/config)">
+    <target name="update" depends="update_configs, update_code, update_webapps, load_atmire_database_changes" description="Update installed code and web applications (without clobbering data/config)">
     </target>
 
     <!-- ============================================================= -->
@@ -953,9 +953,7 @@ Common usage:
     <!-- Do a fresh system install                                     -->
     <!-- ============================================================= -->
 
-    <target name="fresh_install"
-            depends="init_installation,init_configs,test_database,setup_database,load_registries,install_code"
-            description="Do a fresh install of the system, overwriting any data">
+    <target name="fresh_install" depends="init_installation, init_configs, test_database, setup_database, load_registries, load_atmire_database_changes" description="Do a fresh install of the system, overwriting any data">
 
         <delete failonerror="no">
             <fileset dir="${dspace.dir}/webapps" includes="**/*" />
@@ -1052,6 +1050,18 @@ You may manually install this file by following these steps:
 
     <target name="init_geolite" depends="check_geolite" if="need.geolite">
         <antcall target="update_geolite" />
+    </target>
+
+    <target name="load_atmire_database_changes" description="Load the atmire database changes">
+
+        <!-- first import the bitstream registry -->
+        <java classname="org.dspace.app.launcher.ScriptLauncher" classpathref="class.path" fork="yes" failonerror="yes">
+            <sysproperty key="log4j.configuration"
+                         value="file:config/log4j-console.properties" />
+            <sysproperty key="dspace.log.init.disable" value="true" />
+            <sysproperty key="dspace.configuration" value="${config}" />
+            <arg line="dsrun com.atmire.dspace.database.DatabaseLoader"/>
+        </java>
     </target>
 
 </project>

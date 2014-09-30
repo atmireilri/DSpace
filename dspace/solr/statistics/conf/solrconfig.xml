@@ -1026,11 +1026,12 @@
          <str name="stream.contentType">application/json</str>
        </lst>
   </requestHandler>
-  <requestHandler name="/update/csv" class="solr.CSVRequestHandler">
+    <requestHandler name="/update/csv" class="solr.CSVRequestHandler">
         <lst name="defaults">
-         <str name="stream.contentType">application/csv</str>
-       </lst>
-  </requestHandler>
+            <str name="stream.contentType">application/csv</str>
+            <str name="update.chain">uuid</str>
+        </lst>
+    </requestHandler>
 
   <!-- Solr Cell Update Request Handler
 

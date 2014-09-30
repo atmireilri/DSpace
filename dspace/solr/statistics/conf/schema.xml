@@ -46,6 +46,21 @@
        org.apache.solr.analysis package.
     -->
 
+      <fieldtype name="ngrams" class="solr.TextField">
+          <analyzer type="index">
+              <tokenizer class="solr.LowerCaseTokenizerFactory"/>
+              <filter class="solr.NGramFilterFactory" minGramSize="2" maxGramSize="15"/>
+              <filter class="solr.WordDelimiterFilterFactory" generateWordParts="1" generateNumberParts="1" catenateWords="1" catenateNumbers="1" catenateAll="0" splitOnCaseChange="1"/>
+              <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
+          </analyzer>
+          <analyzer type="query">
+              <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+              <filter class="solr.WordDelimiterFilterFactory" generateWordParts="1" generateNumberParts="1" catenateWords="0" catenateNumbers="0" catenateAll="0" splitOnCaseChange="1"/>
+              <filter class="solr.LowerCaseFilterFactory"/>
+              <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
+          </analyzer>
+      </fieldtype>
+
     <!-- The StrField type is not analyzed, but indexed/stored verbatim.  
        - StrField and TextField support an optional compressThreshold which
        limits compression (if enabled in the derived fields) to values which
@@ -338,6 +353,42 @@
     <field name="bitstreamId" type="integer" indexed="true" stored="true" required="false" multiValued="true" />
     <field name="bitstreamCount" type="integer" indexed="true" stored="true" required="false" multiValued="true" />
 
+     <field name="containerCommunity" type="integer" indexed="true" stored="true" required="false" multiValued="true" />
+     <field name="containerCollection" type="integer" indexed="true" stored="true" required="false" multiValued="true" />
+     <field name="containerItem" type="integer" indexed="true" stored="true" required="false" multiValued="true" />
+     <field name="containerBitstream" type="integer" indexed="true" stored="true" required="false" multiValued="true" />
+     <field name="dateYear" type="string" indexed="true" stored="true" required="false" multiValued="false" />
+     <field name="dateYearMonth" type="string" indexed="true" stored="true" required="false" multiValued="false" />
+     <field name="filterquery" type="string" indexed="true" stored="true" required="false" multiValued="true" />
+     <field name="complete_query" type="string" indexed="true" stored="true" required="false" multiValued="false" />
+     <field name="simple_query" type="string" indexed="true" stored="true" required="false" multiValued="false" />
+     <field name="complete_query_search" type="string" indexed="true" stored="true" required="false" multiValued="true"/>
+     <field name="simple_query_search" type="string" indexed="true" stored="true" required="false" multiValued="true"/>
+     <field name="ngram_query_search" type="ngrams" indexed="true" stored="true" required="false" multiValued="true"/>
+     <field name="ngram_simplequery_search" type="ngrams" indexed="true" stored="true" required="false" multiValued="true"/>
+     <field name="text" type="text" indexed="true" stored="false" multiValued="true"/>
+     <field name="storage_statistics_type" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
+     <field name="storage_size" type="long" indexed="true" stored="true" required="false" multiValued="false"/>
+     <field name="storage_nb_of_bitstreams" type="long" indexed="true" stored="true" required="false" multiValued="false"/>
+     <field name="name" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
+     <field name="first_name" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
+     <field name="last_name" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
+     <field name="p_communities_id" type="integer" indexed="true" stored="true" required="false" multiValued="true"/>
+     <field name="p_communities_name" type="string" indexed="true" stored="true" required="false" multiValued="true"/>
+     <field name="p_communities_map" type="string" indexed="true" stored="true" required="false" multiValued="true"/>
+     <field name="p_group_id" type="integer" indexed="true" stored="true" required="false" multiValued="true"/>
+     <field name="p_group_name" type="string" indexed="true" stored="true" required="false" multiValued="true"/>
+     <field name="p_group_map" type="string" indexed="true" stored="true" required="false" multiValued="true"/>
+     <field name="group_id" type="integer" indexed="true" stored="true" required="false" multiValued="true"/>
+     <field name="group_name" type="string" indexed="true" stored="true" required="false" multiValued="true"/>
+     <field name="group_map" type="string" indexed="true" stored="true" required="false" multiValued="true"/>
+     <field name="parent_count" type="integer" indexed="true" stored="true" required="false" multiValued="false"/>
+     <field name="bitstreamId" type="integer" indexed="true" stored="true" required="false" multiValued="true" />
+     <field name="bitstreamCount" type="integer" indexed="true" stored="true" required="false" />
+     <field name="actingGroupId" type="integer" indexed="true" stored="true" required="false" multiValued="true" />
+     <field name="actorMemberGroupId" type="integer" indexed="true" stored="true" required="false" multiValued="true" />
+     <field name="actingGroupParentId" type="integer" indexed="true" stored="true" required="false" multiValued="true" />
+
  </fields>
 
  <uniqueKey>uid</uniqueKey>
@@ -348,6 +399,13 @@
  <!-- SolrQueryParser configuration: defaultOperator="AND|OR" -->
  <solrQueryParser defaultOperator="AND"/>
 
-   
-   
+
+    <copyField source="name" dest="text"/>
+    <copyField source="*_id" dest="text"/>
+    <copyField source="*_name" dest="text"/>
+    <copyField source="*_map" dest="text"/>
+    <copyField source="complete_query_search" dest="ngram_query_search" />
+    <copyField source="simple_query_search" dest="ngram_simplequery_search" />
+
+
 </schema>

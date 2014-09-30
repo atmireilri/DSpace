@@ -183,8 +183,9 @@
 
         <!-- <theme name="Test Theme 1" handle="123456789/1" path="theme1/"/>    -->
         <!-- <theme name="Test Theme 2" regex="community-list" path="theme2/"/> -->
-        <theme name="ReportingSuite" regex="reporting-suite/graph-editor/.*" path="ReportingSuite/" />
+        <theme name="ReportingSuite" regex="(reporting-suite/(graph-editor|content-editor)/)|(statlet/em/).*" path="ReportingSuite/" />
         <theme name="Atmire Modules Theme" regex="atmire/.*" path="AtmireModules/" />
+
 
 
 
