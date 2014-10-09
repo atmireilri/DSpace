@@ -2386,8 +2386,10 @@
 
     <!--CUA-->
     <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_issuedate">Date Issued</message>
-    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_accessioneddate">Date Accesioned</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_accessioneddate">Date Accesioned</
+    <message key="xmlui.statistics.views">Views</message>message>
     <message key="xmlui.ArtifactBrowser.ConfigurableBrowse.sort_by.type">Output type</message>
     <!--end CUA-->
+
 
 </catalogue>
