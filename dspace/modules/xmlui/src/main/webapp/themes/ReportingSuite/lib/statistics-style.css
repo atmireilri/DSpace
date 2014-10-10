@@ -2303,3 +2303,7 @@ table.cua-datatable.noedit td {
 table#aspect_statistics_StatletProvider_table_list-table td.labelcell{
     border: 0px;
 }
+table#aspect_statistics_StatletProvider_table_list-table td.datacell{
+    border: 0px;
+}
+
