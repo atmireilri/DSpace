@@ -2389,6 +2389,22 @@
     <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_accessioneddate">Date Accesioned</message>
     <message key="xmlui.statistics.views">Views</message>
     <message key="xmlui.ArtifactBrowser.ConfigurableBrowse.sort_by.type">Output type</message>
+
+    <message key="xmlui.reporting-suite.statistics.graph-editor.data-source.dataset.option.dc.date.issued">Time</message>
+    <message key="xmlui.reporting-suite.statistics.graph-editor.data-source.dataset.option.ccafsubject">CCAFS Subject Focus</message>
+    <message key="xmlui.reporting-suite.statistics.graph-editor.data-source.dataset.option.status">Status</message>
+    <message key="xmlui.reporting-suite.statistics.graph-editor.data-source.dataset.option.wlesubject">WLE Subject Focus</message>
+    <message key="xmlui.reporting-suite.statistics.graph-editor.data-source.dataset.option.subregion">Region Focus</message>
+    <message key="xmlui.reporting-suite.statistics.graph-editor.data-source.dataset.option.cpwfsubject">CPWF Subject Focus</message>
+    <message key="xmlui.reporting-suite.statistics.graph-editor.data-source.dataset.option.crpsubject">CRP focus</message>
+    <message key="xmlui.reporting-suite.statistics.graph-editor.data-source.dataset.option.bioversity">Bioversity Subject Focus</message>
+    <message key="xmlui.reporting-suite.statistics.graph-editor.data-source.dataset.option.dateAccessioned">Date Accessioned</message>
+    <message key="xmlui.reporting-suite.statistics.graph-editor.data-source.dataset.option.iwmisubject">IWMI Subject Focus</message>
+    <message key="xmlui.reporting-suite.statistics.graph-editor.data-source.dataset.option.ciforsubject">CIFOR Subject Focus</message>
+    <message key="xmlui.reporting-suite.statistics.graph-editor.data-source.dataset.option.country">Country Focus</message>
+    <message key="xmlui.reporting-suite.statistics.graph-editor.data-source.dataset.option.iso">Language</message>
+    <message key="xmlui.reporting-suite.statistics.graph-editor.data-source.dataset.option.ilrisubject">Ilri Subject Focus</message>
+    <message key="xmlui.reporting-suite.statistics.graph-editor.data-source.dataset.option.isijournal">ISI Journal</message>
     <!--end CUA-->
 
 
