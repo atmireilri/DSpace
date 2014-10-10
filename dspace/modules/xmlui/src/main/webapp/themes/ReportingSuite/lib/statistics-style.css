@@ -1,3 +1,4 @@
+
 .invisibleButton{
     visibility:hidden;
 }
@@ -2297,4 +2298,8 @@ div#aspect_statistics_SearchStatistics_div_containerdiv>p {
 
 table.cua-datatable.noedit td {
     cursor: default;
+}
+
+table#aspect_statistics_StatletProvider_table_list-table td.labelcell{
+    border: 0px;
 }
